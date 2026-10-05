@@ -1,0 +1,25 @@
+# node
+node_modules/
+dist/
+.vite/
+
+# env
+.env
+.env.local
+.env.*.local
+
+# terraform
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+terraform/.build/
+
+# python
+__pycache__/
+*.pyc
+
+# os / editor
+.DS_Store
+.vscode/
+.idea/
