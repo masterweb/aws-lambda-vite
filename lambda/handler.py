@@ -37,7 +37,7 @@ def list_tasks():
 
 
 def get_task(task_id):
-    item = table.get_item(Key={"id": task_id}).get("Item")
+    item = table.get_item(Key={"id": task_id}, ConsistentRead=True).get("Item")
     if not item:
         return _response(404, {"error": "not found"})
     return _response(200, item)
@@ -60,7 +60,7 @@ def create_task(payload):
 
 
 def update_task(task_id, payload):
-    existing = table.get_item(Key={"id": task_id}).get("Item")
+    existing = table.get_item(Key={"id": task_id}, ConsistentRead=True).get("Item")
     if not existing:
         return _response(404, {"error": "not found"})
 
@@ -93,7 +93,7 @@ def update_task(task_id, payload):
 
 
 def delete_task(task_id):
-    existing = table.get_item(Key={"id": task_id}).get("Item")
+    existing = table.get_item(Key={"id": task_id}, ConsistentRead=True).get("Item")
     if not existing:
         return _response(404, {"error": "not found"})
     table.delete_item(Key={"id": task_id})
